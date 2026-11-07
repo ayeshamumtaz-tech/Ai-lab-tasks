@@ -32,8 +32,7 @@ class Search:
         return "FAILURE", None
 
     def iddfs(self, start, goal, maximum):
-        # IDDFS repeats DLS with increasing depth limits.
-        # Each iteration starts with a fresh path.
+        # IDDFS repeats DLS with increasing depth limits.Each iteration starts with a fresh path.
         attempted = []
         for limit in range(maximum + 1):
             attempted.append(limit)
@@ -41,28 +40,22 @@ class Search:
             if status == "FOUND" or status == "FAILURE":
                 return status, path, attempted
         return "CUTOFF", None, attempted
-    
 s = Search()
-
 print("DLS RESULTS")
 for limit in range(1, 5):
     status, path = s.dls("A", "G", limit, ["A"])
     print("Limit:", limit, "| Status:", status, "| Path:", path)
-
 print("\nIDDFS RESULT")
 status, path, limits = s.iddfs("A", "G", 4)
 print("Status:", status)
 print("Path:", path)
 print("Limits Attempted:", limits)
-
 # Test 1: Start node is already the goal.
 print("\nSTART EQUALS GOAL")
 print(s.dls("A", "A", 0, ["A"]))
-
 # Test 2: Goal does not exist in the graph.
 print("\nUNREACHABLE GOAL")
 print(s.dls("A", "Z", 4, ["A"]))
-
 # Test 3: Graph contains a cycle.
 cycle_search = Search()
 cycle_search.graph = {
