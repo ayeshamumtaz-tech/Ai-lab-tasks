@@ -13,7 +13,6 @@ def bfs(start, goal):
     q = deque([[start]])
     seen = {start}
     visited = []
-
     while q:
         path = q.popleft()
         node = path[-1]
@@ -24,13 +23,11 @@ def bfs(start, goal):
             if x not in seen:
                 seen.add(x)
                 q.append(path + [x])
-
 def dfs(start, goal):
     # DFS uses LIFO stack and explores one branch deeply first.
     stack = [[start]]
     seen = set()
     visited = []
-
     while stack:
         path = stack.pop()
         node = path[-1]
@@ -48,6 +45,5 @@ bfs_order, bfs_path = bfs("A", "G")
 dfs_order, dfs_path = dfs("A", "G")
 print("BFS Visit Order:", bfs_order)
 print("BFS Final Path:", bfs_path)
-
 print("\nDFS Visit Order:", dfs_order)
 print("DFS Final Path:", dfs_path)
